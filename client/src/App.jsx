@@ -11,6 +11,7 @@ import Addpost from "./pages/Addpost";
 import Mypost from "./pages/Mypost";
 import EditPost from "./pages/Editpost";
 import Postdetail from "./pages/Postdetail";
+console.log(process.env.NODE_ENV); // This should output "development" in the console
 
 const App = () => {
   return (
@@ -24,8 +25,9 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/edit-post/:id" element={<EditPost />} />
           <Route path="/" element={<Navigate to="/signup" />} />
-          <Route path="/post/:id" element={<Postdetail />} /> {/* Post detail route */}
-          </Routes>
+          <Route path="/post/:id" element={<Postdetail />} />{" "}
+          {/* Post detail route */}
+        </Routes>
       </Router>
     </>
   );

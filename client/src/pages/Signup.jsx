@@ -17,6 +17,7 @@ const Signup = () => {
     email: "",
     password: "",
   });
+  const [redirect, setRedirect] = useState(false); // State to control redirect
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const handleSignup = (e) => {
@@ -25,7 +26,7 @@ const Signup = () => {
       .post(`${backendUrl}/signup`, formData)
       .then((response) => {
         console.log("Response: " + response.data.message);
-        Navigate("/login");
+        setRedirect(true); // Set redirect to true after successful signup
       })
       .catch((error) => console.log("Error creating user: " + error.message));
   };
@@ -33,6 +34,11 @@ const Signup = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  // If redirect is true, redirect to /login
+  if (redirect) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <div id={styles.signupParent}>
