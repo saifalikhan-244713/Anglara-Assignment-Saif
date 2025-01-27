@@ -11,6 +11,8 @@ import {
 import styles from "../styles/styles.module.css";
 
 const Addpost = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const [post, setPost] = useState({
     title: "",
     content: "",
@@ -23,7 +25,7 @@ const Addpost = () => {
 
     axios
       .post(
-        "http://localhost:3000/api/posts",
+        `${backendUrl}/api/posts`,
         {
           title: post.title,
           content: post.content,
@@ -33,7 +35,7 @@ const Addpost = () => {
       )
       .then((response) => {
         console.log(response.data);
-        setPost({ title: "", content: "", tags: "" }); 
+        setPost({ title: "", content: "", tags: "" });
       })
       .catch((error) => {
         console.error("Error adding post:", error);
@@ -62,7 +64,12 @@ const Addpost = () => {
           elevation={3}
           sx={{ padding: 4, margin: "auto 0", maxWidth: "400px", width: "90%" }}
         >
-          <Typography variant="h4" gutterBottom className="text-center" sx={{fontFamily:"roboto", fontWeight:"bold"}}>
+          <Typography
+            variant="h4"
+            gutterBottom
+            className="text-center"
+            sx={{ fontFamily: "roboto", fontWeight: "bold" }}
+          >
             Add a New Post
           </Typography>
           <Box

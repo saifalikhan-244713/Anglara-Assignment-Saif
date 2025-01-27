@@ -19,9 +19,10 @@ import { useNavigate } from "react-router-dom";
 import styles from "../styles/styles.module.css";
 
 const Home = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [posts, setPosts] = useState([]);
   const [matchPosts, setMatchPosts] = useState([]);
-  const [searchKeyword, setSearchKeyword] = useState(""); 
+  const [searchKeyword, setSearchKeyword] = useState("");
   const navigate = useNavigate();
 
   const pages = [
@@ -46,10 +47,10 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/posts")
+      .get(`${backendUrl}/api/posts`)
       .then((response) => {
         setPosts(response.data);
-        setMatchPosts(response.data); 
+        setMatchPosts(response.data);
       })
       .catch((error) => {
         console.error("Error fetching posts:", error);
@@ -261,7 +262,7 @@ const Home = () => {
                   }}
                   onClick={() => handleReadMoreClick(post._id)}
                 >
-                  Read More 
+                  Read More
                 </Button>
               </CardContent>
             </Card>

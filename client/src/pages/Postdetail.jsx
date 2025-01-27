@@ -7,12 +7,13 @@ import styles from "../styles/styles.module.css";
 const Postdetail = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/posts/${id}`
+          `${backendUrl}/api/posts/${id}`
         );
         setPost(response.data);
       } catch (error) {

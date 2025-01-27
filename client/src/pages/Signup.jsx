@@ -17,11 +17,12 @@ const Signup = () => {
     email: "",
     password: "",
   });
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const handleSignup = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/signup", formData)
+      .post(`${backendUrl}/signup`, formData)
       .then((response) => {
         console.log("Response: " + response.data.message);
         Navigate("/login");

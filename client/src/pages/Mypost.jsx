@@ -15,6 +15,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import styles from "../styles/styles.module.css";
 
 const Mypost = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
 
@@ -23,7 +25,7 @@ const Mypost = () => {
 
     if (token) {
       axios
-        .get("http://localhost:3000/api/my-posts", {
+        .get(`${backendUrl}/api/my-posts`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {

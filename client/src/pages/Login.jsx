@@ -14,6 +14,8 @@ import {
 import styles from "../styles/styles.module.css";
 
 const Login = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -31,7 +33,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/login",
+        `${backendUrl}/login`,
         formData
       );
       localStorage.setItem("token", response.data.token);

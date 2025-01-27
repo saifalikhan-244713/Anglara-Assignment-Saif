@@ -14,12 +14,13 @@ const EditPost = () => {
   const { id } = useParams();
   const [post, setPost] = useState({ title: "", content: "", tags: [] });
   const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   // Fetch the post details when the component mounts
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get(`http://localhost:3000/api/posts/${id}`, {
+      .get(`${backendUrl}/api/posts/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => setPost(response.data))
@@ -43,7 +44,7 @@ const EditPost = () => {
   return (
     <Container maxWidth="sm">
       <Paper elevation={3} sx={{ padding: 4, marginTop: 4 }}>
-        
+
         <Typography variant="h4" gutterBottom className="text-center">
           Edit Post
         </Typography>
